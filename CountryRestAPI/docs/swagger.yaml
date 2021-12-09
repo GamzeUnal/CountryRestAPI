@@ -1,0 +1,110 @@
+basePath: /
+definitions:
+  main.Country:
+    properties:
+      Code:
+        type: string
+      Name:
+        type: string
+      ParentCity:
+        type: string
+    type: object
+host: localhost:5003
+info:
+  contact:
+    email: u.gamze0@gmail.com
+    name: Gamze Ünal Çoban
+  description: Country Operation(post, get, list, delete)
+  title: Country API
+  version: "1.0"
+paths:
+  /countries:
+    get:
+      consumes:
+      - application/json
+      description: Country List
+      operationId: get-countries
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              items:
+                $ref: '#/definitions/main.Country'
+              type: array
+            type: object
+        "400":
+          description: ""
+      summary: Country List
+      tags:
+      - Country List
+  /countries/:
+    get:
+      consumes:
+      - application/json
+      description: Country Detail
+      operationId: get-country
+      parameters:
+      - description: Code
+        in: path
+        name: Code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              items:
+                $ref: '#/definitions/main.Country'
+              type: array
+            type: object
+        "400":
+          description: ""
+      summary: Country Detail
+      tags:
+      - Country Detail
+  /countries/delete:
+    delete:
+      consumes:
+      - application/json
+      description: Remove Countries
+      operationId: del-countries
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Remove Countries
+      tags:
+      - Country Delete
+  /newcountry:
+    post:
+      consumes:
+      - application/json
+      description: Create Country
+      operationId: post-country
+      parameters:
+      - description: Post Country Input
+        in: body
+        name: postCountry
+        required: true
+        schema:
+          $ref: '#/definitions/main.Country'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Country'
+        "400":
+          description: ""
+      summary: Post Country
+      tags:
+      - post
+swagger: "2.0"

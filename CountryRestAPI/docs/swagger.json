@@ -1,0 +1,166 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Country Operation(post, get, list, delete)",
+        "title": "Country API",
+        "contact": {
+            "name": "Gamze Ünal Çoban",
+            "email": "u.gamze0@gmail.com"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:5003",
+    "basePath": "/",
+    "paths": {
+        "/countries": {
+            "get": {
+                "description": "Country List",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Country List"
+                ],
+                "summary": "Country List",
+                "operationId": "get-countries",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/main.Country"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/countries/": {
+            "get": {
+                "description": "Country Detail",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Country Detail"
+                ],
+                "summary": "Country Detail",
+                "operationId": "get-country",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Code",
+                        "name": "Code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/main.Country"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/countries/delete": {
+            "delete": {
+                "description": "Remove Countries",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Country Delete"
+                ],
+                "summary": "Remove Countries",
+                "operationId": "del-countries",
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/newcountry": {
+            "post": {
+                "description": "Create Country",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "post"
+                ],
+                "summary": "Post Country",
+                "operationId": "post-country",
+                "parameters": [
+                    {
+                        "description": "Post Country Input",
+                        "name": "postCountry",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/main.Country"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.Country"
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.Country": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "string"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "ParentCity": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
